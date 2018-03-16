@@ -2,7 +2,7 @@ import React from "react";
 // import PropTypes from 'prop-types';
 import { Field, reduxForm } from "redux-form";
 import { withStyles } from "material-ui/styles";
-import { Grid, TextField, Button, MenuItem } from "material-ui";
+import { Grid, TextField, Button } from "material-ui";
 
 const styles = theme => ({
   container: {
@@ -56,17 +56,15 @@ const renderSelectField = ({
   />
 );
 
-let PostForm = props => {
-  const {
-    categories,
-    onSubmit,
-    handleSubmit,
-    pristine,
-    submitting,
-    reset,
-    classes
-  } = props;
-
+let PostForm = ({
+  categories,
+  onSubmit,
+  handleSubmit,
+  pristine,
+  submitting,
+  reset,
+  classes
+}) => {
   return (
     <Grid container spacing={24}>
       <Grid item xs={1} />

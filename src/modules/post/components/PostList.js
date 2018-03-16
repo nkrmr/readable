@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostItem from "./PostItem";
-import { Grid, Paper, MenuList, MenuItem } from "material-ui";
+import { Grid, Paper } from "material-ui";
 import { withStyles } from "material-ui/styles";
 import Menu from "../../category/containers/Menu";
-import Avatar from "material-ui/Avatar";
-import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";
 
 const styles = theme => ({
@@ -18,8 +16,7 @@ const styles = theme => ({
   }
 });
 
-const PostList = props => {
-  const { posts, comments, handleVote, handleRemove, classes } = props;
+const PostList = ({ posts, comments, handleVote, handleRemove, classes }) => {
   return (
     <Grid container spacing={24}>
       <Grid item xs={2}>

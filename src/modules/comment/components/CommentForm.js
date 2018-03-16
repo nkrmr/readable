@@ -1,21 +1,20 @@
-import React from 'react';
+import React from "react";
 // import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Grid, TextField, Button } from 'material-ui';
+import { Field, reduxForm } from "redux-form";
+import { Grid, TextField, Button } from "material-ui";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   button: {
-    margin: theme.spacing.unit,
-  },
+    margin: theme.spacing.unit
+  }
 });
 
 const renderTextField = ({
@@ -35,8 +34,14 @@ const renderTextField = ({
   />
 );
 
-let CommentForm = props => {
-  const { postId, onSubmit, handleSubmit, pristine, submitting, reset } = props;
+let CommentForm = ({
+  postId,
+  onSubmit,
+  handleSubmit,
+  pristine,
+  submitting,
+  reset
+}) => {
   return (
     <Grid container spacing={24}>
       <Grid item xs={1} />
@@ -45,7 +50,8 @@ let CommentForm = props => {
           className={styles.container}
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          autoComplete="off">
+          autoComplete="off"
+        >
           <Field
             name="body"
             component={renderTextField}
@@ -59,14 +65,16 @@ let CommentForm = props => {
             variant="raised"
             color="primary"
             className={styles.button}
-            disabled={pristine || submitting}>
+            disabled={pristine || submitting}
+          >
             Submit
           </Button>
           <Button
             variant="raised"
             className={styles.button}
             disabled={pristine || submitting}
-            onClick={reset}>
+            onClick={reset}
+          >
             Clear Values
           </Button>
         </form>
@@ -78,19 +86,19 @@ let CommentForm = props => {
 
 const validate = values => {
   const errors = {};
-  const requiredFields = ['body', 'author'];
+  const requiredFields = ["body", "author"];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required';
+      errors[field] = "Required";
     }
   });
   return errors;
 };
 
 CommentForm = reduxForm({
-  form: 'CommentForm',
+  form: "CommentForm",
   validate,
-  enableReinitialize: true,
+  enableReinitialize: true
 })(CommentForm);
 
 export default CommentForm;

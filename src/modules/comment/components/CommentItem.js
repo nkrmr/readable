@@ -1,9 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import moment from "moment";
 import { withStyles } from "material-ui/styles";
-import classnames from "classnames";
 import Card, { CardHeader, CardContent } from "material-ui/Card";
 import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";

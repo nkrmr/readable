@@ -3,18 +3,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { withStyles } from "material-ui/styles";
-import classnames from "classnames";
-import Card, {
-  CardHeader,
-  CardMedia,
-  CardContent,
-  CardActions
-} from "material-ui/Card";
-import Paper from "material-ui/Paper";
+import Card, { CardHeader, CardContent, CardActions } from "material-ui/Card";
 import Avatar from "material-ui/Avatar";
 import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";
-import red from "material-ui/colors/red";
 import FileUpload from "material-ui-icons/FileUpload";
 import FileDownload from "material-ui-icons/FileDownload";
 
@@ -23,6 +15,11 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     margin: 20
+  },
+  title: {
+    color: "black",
+    textDecoration: "none",
+    fontSize: 20
   },
   vote: {
     display: "flex",
@@ -43,20 +40,19 @@ const styles = theme => ({
   }
 });
 
-const PostItem = props => {
-  const {
-    id,
-    title,
-    body,
-    category,
-    author,
-    timestamp,
-    voteScore,
-    handleVote,
-    handleRemove,
-    classes,
-    commentsCount
-  } = props;
+const PostItem = ({
+  id,
+  title,
+  body,
+  category,
+  author,
+  timestamp,
+  voteScore,
+  handleVote,
+  handleRemove,
+  classes,
+  commentsCount
+}) => {
   let initials = author.match(/\b\w/g) || [];
   initials = ((initials.shift() || "") + (initials.pop() || "")).toUpperCase();
   return (
@@ -109,21 +105,11 @@ const PostItem = props => {
               </Button>
             </div>
           }
-          action={
-            <div>
-              <Button
-                color="inherit"
-                to={`/update/${id}`}
-                component={props => <Link {...props} />}
-              >
-                Edit
-              </Button>
-              <Button color="inherit" onClick={() => handleRemove(id)}>
-                Remove
-              </Button>
-            </div>
+          title={
+            <Link to={`/post/${category}/${id}`} className={classes.title}>
+              {title}
+            </Link>
           }
-          title={title}
           subheader={`Since ${moment().diff(
             timestamp,
             "hours"

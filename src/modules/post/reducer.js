@@ -17,7 +17,7 @@ export default (state = initialState.posts, action) => {
       return state.filter(p => p.id !== action.id);
     case UPDATE_POST:
       return state.map((item, index) => {
-        if (item.id == action.payload.id) {
+        if (item.id === action.payload.id) {
           return {
             ...item,
             ...action.payload

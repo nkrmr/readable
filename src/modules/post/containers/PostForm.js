@@ -17,8 +17,8 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     onSubmit: values => {
       if (ownProps.match.params.id) {
-        dispatch(updatePost(values, ownProps.match.params.id)).then(() => {
-          ownProps.history.push("/redirect");
+        dispatch(updatePost(values, ownProps.match.params.id)).then(data => {
+          ownProps.history.push(`/post/${values.category}/${values.id}`);
         });
       } else {
         dispatch(addPost(values)).then(() => {

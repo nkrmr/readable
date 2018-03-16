@@ -1,6 +1,5 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
-import classnames from "classnames";
 import CommentItem from "./CommentItem";
 import CommentForm from "../containers/CommentForm";
 import ExpansionPanel, {
@@ -33,8 +32,13 @@ const styles = theme => ({
   }
 });
 
-const CommentList = props => {
-  const { comments, postId, handleVote, classes, handleRemove } = props;
+const CommentList = ({
+  comments,
+  postId,
+  handleVote,
+  classes,
+  handleRemove
+}) => {
   return (
     <div className={classes.expension}>
       <ExpansionPanel className={classes.paper}>

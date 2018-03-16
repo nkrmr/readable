@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     initialState: () => {
-      dispatch(getCategories()).then(() => dispatch(getPosts()));
+      dispatch(getPosts()).then(() => dispatch(getCategories()));
     }
   };
 }

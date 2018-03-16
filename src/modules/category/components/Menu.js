@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Paper, MenuList, MenuItem, Divider } from 'material-ui';
-import { Link } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
-import classnames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import { Paper, MenuList, MenuItem, Divider } from "material-ui";
+import { Link } from "react-router-dom";
+import { withStyles } from "material-ui/styles";
 
 const styles = theme => ({
   paper: {
     margin: 24,
-    width: '100%',
-  },
+    width: "100%"
+  }
 });
 
-const Menu = props => {
-  const { categories, classes, handleSort } = props;
+const Menu = ({ categories, classes, handleSort }) => {
   return (
     <Paper className={classes.paper} elevation={1}>
       <MenuList>
@@ -24,21 +22,24 @@ const Menu = props => {
           <MenuItem
             key={category.path}
             to={`/category/${category.path}`}
-            component={props => <Link {...props} />}>
+            component={props => <Link {...props} />}
+          >
             {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
           </MenuItem>
         ))}
         <Divider />
         <MenuItem
           key="score"
-          selected={categories.sort === 'voteScore'}
-          onClick={() => handleSort('voteScore')}>
+          selected={categories.sort === "voteScore"}
+          onClick={() => handleSort("voteScore")}
+        >
           Sort by score
         </MenuItem>
         <MenuItem
           key="date"
-          selected={categories.sort === 'timestamp'}
-          onClick={() => handleSort('timestamp')}>
+          selected={categories.sort === "timestamp"}
+          onClick={() => handleSort("timestamp")}
+        >
           Sort by date
         </MenuItem>
       </MenuList>
@@ -47,7 +48,7 @@ const Menu = props => {
 };
 
 Menu.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Menu);

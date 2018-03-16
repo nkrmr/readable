@@ -3,11 +3,11 @@ import { compose, lifecycle } from "recompose";
 import sortBy from "sort-by";
 
 import Component from "../components/PostDetails";
-import { getPosts, removePost } from "../actions";
+import { removePost, updateVote } from "../actions";
 
 function mapStateToProps(state, ownProps) {
   return {
-    post: state.posts.filter(p => p.id === ownProps.match.params.id)[0] || [],
+    post: state.posts.filter(p => p.id === ownProps.match.params.id)[0],
     comments:
       state.comments
         .filter(c => c.parentId === ownProps.match.params.id)
@@ -17,6 +17,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
+    handleVote(event, option, id) {
+      dispatch(updateVote({ id, option }));
+    },
     handleRemove(id) {
       dispatch(removePost(id)).then(() => {
         ownProps.history.push("/");
