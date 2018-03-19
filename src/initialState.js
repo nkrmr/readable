@@ -1,5 +1,6 @@
 export default {
   posts: [],
   categories: { list: [], sort: "score" },
-  comments: []
+  comments: [],
+  initial_state: false
 };

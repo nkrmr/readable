@@ -27,6 +27,21 @@ export const addComment = (data, postId) => dispatch => {
 };
 
 export const updateComment = data => dispatch => {
+  return fetch(endpoints.comments.update(data.id), {
+    body: JSON.stringify(data),
+    method: "PUT",
+    headers
+  })
+    .then(resp => resp.json())
+    .then(payload => {
+      action(dispatch, actions.UPDATE_COMMENT, { payload });
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+};
+
+export const updateCommentVote = data => dispatch => {
   fetch(endpoints.comments.update(data.id), {
     body: JSON.stringify(data),
     method: "POST",

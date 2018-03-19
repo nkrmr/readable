@@ -3,7 +3,7 @@ import { compose, lifecycle } from "recompose";
 import sortBy from "sort-by";
 
 import Component from "../components/CommentList";
-import { updateComment, removeComment } from "../actions";
+import { updateCommentVote, removeComment } from "../actions";
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -14,10 +14,13 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     handleVote(event, option, id) {
-      dispatch(updateComment({ id, option }));
+      dispatch(updateCommentVote({ id, option }));
     },
     handleRemove(id) {
       dispatch(removeComment(id));
+    },
+    handleModalClose() {
+      ownProps.history.goBack();
     }
   };
 }

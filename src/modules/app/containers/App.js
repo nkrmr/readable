@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 
-import Component from "./App";
-import { getPosts } from "./modules/post/actions";
-import { getCategories } from "./modules/category/actions";
+import Component from "../components/App";
+import { initialState } from "../actions";
+import { getPosts } from "../../post/actions";
+import { getCategories } from "../../category/actions";
 
 function mapStateToProps(state) {
   return {};
@@ -12,7 +13,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     initialState: () => {
-      dispatch(getPosts()).then(() => dispatch(getCategories()));
+      dispatch(getPosts()).then(() =>
+        dispatch(getCategories()).then(() => dispatch(initialState()))
+      );
     }
   };
 }

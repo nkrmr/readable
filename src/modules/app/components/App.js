@@ -9,11 +9,11 @@ import {
 } from "material-ui";
 import { createMuiTheme } from "material-ui/styles";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
-import PostForm from "./modules/post/containers/PostForm";
-import PostList from "./modules/post/containers/PostList";
-import PostDetails from "./modules/post/containers/PostDetails";
+import PostForm from "../../post/containers/PostForm";
+import PostList from "../../post/containers/PostList";
+import PostDetails from "../../post/containers/PostDetails";
 import NotFound from "./NotFound.js";
-import "./App.css";
+import "../App.css";
 
 const styles = {
   root: {
@@ -65,10 +65,15 @@ const App = ({ classes }) => {
         <div className={styles.root}>
           <Switch>
             <Route exact path="/" component={PostList} />
-            <Route exact path="/post/:category/:id" component={PostDetails} />
             <Route exact path="/category/:category" component={PostList} />
             <Route exact path="/create" component={PostForm} />
             <Route exact path="/update/:id" component={PostForm} />
+            <Route exact path="/:category/:id" component={PostDetails} />
+            <Route
+              exact
+              path="/:category/:id/comment/:commentId"
+              component={PostDetails}
+            />
             <Route
               exact
               path="/redirect"

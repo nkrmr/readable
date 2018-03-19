@@ -2,6 +2,7 @@ import initialState from "../../initialState";
 import {
   ADD_COMMENT,
   SET_COMMENT,
+  UPDATE_COMMENT,
   UPDATE_COMMENT_VOTE,
   REMOVE_COMMENT
 } from "./actionType";
@@ -12,6 +13,16 @@ export default (state = initialState.comments, action) => {
       return [...state, action.payload];
     case SET_COMMENT:
       return [...state, action.payload];
+    case UPDATE_COMMENT:
+      return state.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            ...action.payload
+          };
+        }
+        return item;
+      });
     case REMOVE_COMMENT:
       return state.filter(c => c.id !== action.id);
     case UPDATE_COMMENT_VOTE:

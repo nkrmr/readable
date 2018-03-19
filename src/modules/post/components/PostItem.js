@@ -106,7 +106,7 @@ const PostItem = ({
             </div>
           }
           title={
-            <Link to={`/post/${category}/${id}`} className={classes.title}>
+            <Link to={`/${category}/${id}`} className={classes.title}>
               {title}
             </Link>
           }
@@ -122,7 +122,7 @@ const PostItem = ({
           <Button
             size="small"
             color="primary"
-            to={`/post/${category}/${id}`}
+            to={`/${category}/${id}`}
             component={props => <Link {...props} />}
           >
             {commentsCount} comment(s)

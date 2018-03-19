@@ -5,10 +5,10 @@ import moment from "moment";
 import { withStyles } from "material-ui/styles";
 import Card, { CardHeader, CardContent, CardActions } from "material-ui/Card";
 import Typography from "material-ui/Typography";
-import Comments from "../../comment/containers/CommentList";
 import Button from "material-ui/Button";
 import FileUpload from "material-ui-icons/FileUpload";
 import FileDownload from "material-ui-icons/FileDownload";
+import Comments from "../../comment/containers/CommentList";
 
 const styles = theme => ({
   card: {
@@ -41,6 +41,7 @@ const styles = theme => ({
 });
 
 const PostDetails = ({
+  initialState,
   post,
   comments,
   classes,
@@ -48,7 +49,9 @@ const PostDetails = ({
   voteScore,
   handleVote,
   commentsCount,
-  category
+  category,
+  commentEdit,
+  history
 }) => {
   return (
     <div>
@@ -120,10 +123,15 @@ const PostDetails = ({
               </CardActions>
             </div>
           </Card>
-          <Comments comments={comments} postId={post.id} />
+          <Comments
+            comments={comments}
+            post={post}
+            commentEdit={commentEdit}
+            history={history}
+          />
         </div>
       ) : (
-        <Redirect />
+        initialState && <Redirect to={`/notfound`} />
       )}
     </div>
   );

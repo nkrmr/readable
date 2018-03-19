@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
 import Card, { CardHeader, CardContent } from "material-ui/Card";
 import Button from "material-ui/Button";
@@ -42,6 +43,7 @@ const CommentItem = ({
   author,
   timestamp,
   voteScore,
+  post,
   handleVote,
   handleRemove,
   classes
@@ -83,6 +85,13 @@ const CommentItem = ({
           )} hours by ${author}`}
           action={
             <div>
+              <Button
+                color="inherit"
+                to={`/${post.category}/${post.id}/comment/${id}`}
+                component={props => <Link {...props} />}
+              >
+                Edit
+              </Button>
               <Button color="inherit" onClick={() => handleRemove(id)}>
                 Remove
               </Button>

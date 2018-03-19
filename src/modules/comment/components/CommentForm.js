@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from 'prop-types';
 import { Field, reduxForm } from "redux-form";
+import { withStyles } from "material-ui/styles";
 import { Grid, TextField, Button } from "material-ui";
 
 const styles = theme => ({
@@ -36,11 +37,13 @@ const renderTextField = ({
 
 let CommentForm = ({
   postId,
+  comment,
   onSubmit,
   handleSubmit,
   pristine,
   submitting,
-  reset
+  reset,
+  classes
 }) => {
   return (
     <Grid container spacing={24}>
@@ -59,19 +62,21 @@ let CommentForm = ({
             multiline
             rows="5"
           />
-          <Field name="author" component={renderTextField} label="Author" />
+          {!comment && (
+            <Field name="author" component={renderTextField} label="Author" />
+          )}
           <Button
             type="submit"
             variant="raised"
             color="primary"
-            className={styles.button}
+            className={classes.button}
             disabled={pristine || submitting}
           >
             Submit
           </Button>
           <Button
             variant="raised"
-            className={styles.button}
+            className={classes.button}
             disabled={pristine || submitting}
             onClick={reset}
           >
@@ -101,4 +106,4 @@ CommentForm = reduxForm({
   enableReinitialize: true
 })(CommentForm);
 
-export default CommentForm;
+export default withStyles(styles)(CommentForm);

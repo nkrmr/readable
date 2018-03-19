@@ -1,13 +1,14 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
-import CommentItem from "./CommentItem";
-import CommentForm from "../containers/CommentForm";
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails
 } from "material-ui/ExpansionPanel";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import Typography from "material-ui/Typography";
+import CommentItem from "./CommentItem";
+import CommentForm from "../containers/CommentForm";
+import CommentModal from "../../comment/containers/CommentModal";
 
 const styles = theme => ({
   expension: {
@@ -34,10 +35,13 @@ const styles = theme => ({
 
 const CommentList = ({
   comments,
-  postId,
+  post,
   handleVote,
   classes,
-  handleRemove
+  handleRemove,
+  commentEdit,
+  handleModalClose,
+  history
 }) => {
   return (
     <div className={classes.expension}>
@@ -53,7 +57,7 @@ const CommentList = ({
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <CommentForm postId={postId} />
+          <CommentForm postId={post.id} />
         </ExpansionPanelDetails>
       </ExpansionPanel>
       {comments &&
@@ -61,11 +65,17 @@ const CommentList = ({
           <CommentItem
             key={comment.id}
             {...comment}
-            postId={postId}
+            post={post}
             handleVote={handleVote}
             handleRemove={handleRemove}
           />
         ))}
+      <CommentModal
+        comment={commentEdit}
+        open={commentEdit ? true : false}
+        handleModalClose={handleModalClose}
+        history={history}
+      />
     </div>
   );
 };

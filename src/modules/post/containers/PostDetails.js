@@ -11,7 +11,12 @@ function mapStateToProps(state, ownProps) {
     comments:
       state.comments
         .filter(c => c.parentId === ownProps.match.params.id)
-        .sort(sortBy("-timestamp")) || []
+        .sort(sortBy("-timestamp")) || [],
+    commentEdit: state.comments.filter(
+      c => c.id === ownProps.match.params.commentId
+    )[0],
+    initialState: state.initial_state,
+    history: ownProps.history
   };
 }
 
